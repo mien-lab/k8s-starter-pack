@@ -1,0 +1,12 @@
+cert-manager:
+  # Essential: Installs the required Custom Resource Definitions (CRDs)
+  # Note: In older versions this was `installCRDs: true`, but it is now `crds.enabled`
+  crds:
+    enabled: true
+  
+  # Optional: 1 replica is perfect for local k3d to save resources
+  replicaCount: 1
+  
+  # Optional: Forces cert-manager components into a specific namespace, 
+  # even if you install this umbrella chart somewhere else.
+  # namespace: "cert-manager"

@@ -1,0 +1,12 @@
+apiVersion: v2
+name: external-secrets
+description: External Secrets Operator - sync secrets from Vault (and others) to K8s
+type: application
+version: 0.1.0
+appVersion: "v2.0.0"
+kubeVersion: ">=1.19.0-0"
+
+dependencies:
+  - name: external-secrets
+    version: 2.0.0
+    repository: https://charts.external-secrets.io

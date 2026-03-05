@@ -1,0 +1,9 @@
+# Local k3d: Vault is initialized and unsealed by the setup script, not by a postStart hook.
+# Run bin/setup-cluster/cluster-local.sh — it calls steps/vault-init-unseal.sh and
+# steps/vault-configure.sh automatically after ArgoCD deploys vault.
+#
+# WARNING: init-keys.json (root token + unseal key) is stored in plaintext on the PV at
+# /vault/data/init-keys.json. This is intentional for local development convenience ONLY.
+# For staging/prod use values-cloud.yaml with AWS KMS auto-unseal instead.
+vault:
+  server: {}

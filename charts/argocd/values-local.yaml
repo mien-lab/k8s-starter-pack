@@ -1,0 +1,25 @@
+# Local / port-forward: no domain, no TLS. Use with bin/setup-cluster/cluster-local.sh
+# which mounts the repo into k3d at /tmp/local-manifests.
+#   kubectl port-forward -n argocd svc/argocd-server 8080:443
+#   Then: http://localhost:8080  CLI: argocd login 127.0.0.1:8080 --insecure --plaintext
+# In Argo CD, add a repo with path /tmp/local-manifests (directory) for local manifests.
+#
+# Private Git repository: declared below with a dummy sshPrivateKey. The Secret is
+# overwritten by bin/setup-cluster/steps/argocd-repo-secret.sh with the real key.
+
+argo-cd:
+  global:
+    domain: localhost
+  server:
+    ingress:
+      enabled: false
+  configs:
+    params:
+      "server.insecure": "true"
+      "server.disable.auth": "true"
+    repositories:
+      k8s-manifests:
+        # Use SSH URL so Argo CD uses sshPrivateKey (patched by argocd-repo-secret.sh)
+        url: git@github.com:mien-lab/k8s-starter-pack.git
+        type: git
+        sshPrivateKey: "REPLACE_BY_SCRIPT"

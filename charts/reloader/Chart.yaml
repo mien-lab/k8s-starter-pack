@@ -1,0 +1,12 @@
+apiVersion: v2
+name: reloader
+description: Reloader - restart Deployments/StatefulSets when ConfigMaps and Secrets change
+type: application
+version: 0.1.0
+appVersion: "v1.4.13"
+kubeVersion: ">=1.19.0-0"
+
+dependencies:
+  - name: reloader
+    version: 2.2.8
+    repository: https://stakater.github.io/stakater-charts

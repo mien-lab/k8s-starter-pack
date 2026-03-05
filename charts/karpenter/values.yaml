@@ -1,0 +1,26 @@
+karpenter:
+  replicas: 1
+
+  serviceAccount:
+    create: true
+    name: karpenter
+    annotations:
+      # IRSA role provisioned by Terraform; replace before deploying to staging/prod.
+      eks.amazonaws.com/role-arn: REPLACE_WITH_KARPENTER_IRSA_ROLE_ARN
+
+  settings:
+    clusterName: REPLACE_WITH_CLUSTER_NAME
+    # SQS queue name for EC2 interruption notifications.
+    # Provisioned by Terraform; replace before deploying.
+    interruptionQueue: REPLACE_WITH_INTERRUPTION_QUEUE_NAME
+    featureGates:
+      # Allow consolidation from spot to spot — reduces cost significantly.
+      spotToSpotConsolidation: true
+
+  controller:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        memory: 512Mi

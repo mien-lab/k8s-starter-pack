@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: local
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: git@github.com:mien-lab/k8s-starter-pack.git
+      path: environments/overlays/local
+      targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      enabled: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true

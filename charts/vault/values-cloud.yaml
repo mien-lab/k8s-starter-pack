@@ -1,0 +1,12 @@
+# Staging/Production: AWS KMS auto-unseal.
+# Vault unseals automatically on pod restart — no manual unseal or postStart hook required.
+# Required IAM permissions on the node/IRSA role:
+#   kms:Decrypt, kms:Encrypt, kms:DescribeKey on the KMS key below.
+vault:
+  server:
+    standalone:
+      config: |
+        seal "awskms" {
+          region     = "ap-southeast-1"
+          kms_key_id = "REPLACE_WITH_KMS_KEY_ARN"
+        }

@@ -1,0 +1,39 @@
+keda:
+  operator:
+    replicaCount: 1
+
+  metricsServer:
+    replicaCount: 1
+
+  webhooks:
+    replicaCount: 1
+
+  resources:
+    operator:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 256Mi
+    metricServer:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 256Mi
+    webhooks:
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        memory: 128Mi
+
+  prometheus:
+    metricServer:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+    operator:
+      enabled: true
+      serviceMonitor:
+        enabled: true

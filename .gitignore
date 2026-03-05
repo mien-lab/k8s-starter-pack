@@ -49,3 +49,5 @@ coverage/
 *.gcda
 *.gcno
 *.gcov
+
+charts/*/charts/

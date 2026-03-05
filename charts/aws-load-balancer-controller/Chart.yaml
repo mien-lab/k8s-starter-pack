@@ -1,0 +1,12 @@
+apiVersion: v2
+name: aws-load-balancer-controller
+description: AWS Load Balancer Controller - provisions ALB/NLB from Kubernetes Ingress/Service resources
+type: application
+version: 0.1.0
+appVersion: "v3.1.0"
+kubeVersion: ">=1.29.0-0"
+
+dependencies:
+  - name: aws-load-balancer-controller
+    version: 3.1.0
+    repository: https://aws.github.io/eks-charts

@@ -1,0 +1,28 @@
+aws-load-balancer-controller:
+  # CRDs are installed via a separate ArgoCD Application (wave 0) sourced from GitHub.
+  # The controller chart ships crds/ but we disable installation here to avoid conflicts.
+  installCRDs: false
+
+  clusterName: REPLACE_WITH_CLUSTER_NAME
+
+  region: ap-southeast-1
+
+  replicaCount: 1
+
+  serviceAccount:
+    create: true
+    name: aws-load-balancer-controller
+    annotations:
+      # IRSA role provisioned by Terraform; replace before deploying to staging/prod.
+      eks.amazonaws.com/role-arn: REPLACE_WITH_ALB_CONTROLLER_IRSA_ROLE_ARN
+
+  resources:
+    requests:
+      cpu: 25m
+      memory: 64Mi
+    limits:
+      memory: 128Mi
+
+  # Reduce pod-disruption impact on single-replica frugal setup.
+  podDisruptionBudget:
+    maxUnavailable: 1
