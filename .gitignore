@@ -1,0 +1,51 @@
+# Secrets 
+*.env
+*.env.*
+*.secret
+*.key
+*.pem
+*.p12
+*.crt
+*.cert
+*.der
+*.token
+*.secrets.*
+*.password
+secrets.*
+.envrc
+
+# OS Files 
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE Files 
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.log
+
+# Compiled / Build Artifacts 
+dist/
+build/
+out/
+target/
+tmp/
+*.o
+*.so
+*.a
+*.class
+*.dll
+*.exe
+
+# Coverage / Testing 
+coverage/
+*.lcov
+*.cover
+*.gcda
+*.gcno
+*.gcov
